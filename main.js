@@ -66,16 +66,18 @@ students.forEach(student => console.log(student.Name));
 
 
 
-//Event Listener for Get Started Button
-const getStartedButton = document.querySelector("#getStarted");
 
-getStartedButton.addEventListener("click", () => {
-  console.log("it works");
-});
 
-//name and sorting form
+//render to dom utility function
 
-<div class="mb-3">
+const renderToDom = (divId, htmlToRender) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = htmlToRender;
+};
+
+let submitForm = "";
+submitForm += 
+`<div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
@@ -88,4 +90,14 @@ getStartedButton.addEventListener("click", () => {
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Sort</button>`;
+  
+
+  
+
+  //Event Listener for Get Started Button
+const getStartedButton = document.querySelector("#getStarted");
+
+getStartedButton.addEventListener("click", () => {
+  renderToDom("#app", submitForm);
+});
