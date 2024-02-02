@@ -1,7 +1,15 @@
-body {
+#app {
   background-color: blueviolet;
 }
 
 #getStarted {
   background-color: red
+}
+
+#startButton {
+  background-color: blue
+}
+
+#houseButtons {
+  background-color: yellowgreen
 }
