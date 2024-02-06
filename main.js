@@ -1,78 +1,81 @@
 const students = [
 {
   id: 1,
-  Name: "Harry Potter",
-  Talent: "Flying",
-  Class: "Gryffindor",
-  imageUrl: ""
+  name: "Harry Potter",
+  talent: "Flying",
+  class: "Gryffindor",
+  imageUrl: "https://cdn.pixabay.com/photo/2019/03/24/12/19/harry-potter-4077473_1280.png"
 },
 {
   id: 2,
-  Name: "Hermione Granger",
-  Talent: "WitchCraft",
-  Class: "Gryffindor",
-  imageUrl: ""
+  name: "Hermione Granger",
+  talent: "WitchCraft",
+  class: "Gryffindor",
+  imageUrl: "https://cdn.pixabay.com/photo/2019/07/18/12/24/hermione-granger-4346324_1280.jpg"
 },
 {
   id: 3,
-  Name: "Draco Malfoy",
-  Talent: "Occlumency",
-  Class: "Slytherin",
-  imageUrl: ""
+  name: "Draco Malfoy",
+  talent: "Occlumency",
+  class: "Slytherin",
+  imageUrl: "https://cdn.pixabay.com/photo/2021/12/16/18/34/draco-malfoy-6875025_1280.png"
 },
 {
   id: 4,
-  Name: "Ron Weasley",
-  Talent: "Comedian",
-  Class: "Gryffindor", 
-  imageUrl: ""
+  name: "Ron Weasley",
+  talent: "Comedian",
+  class: "Gryffindor", 
+  imageUrl: "https://img.freepik.com/premium-vector/ron-weasley-vector-illustration-cartoon_969863-945.jpg?w=900"
 },
 {
   id: 5,
-  Name: "Luna Lovegood",
-  Talent: "Wit",
-  Class: "Ravenclaw",
-  imageUrl: ""
+  name: "Luna Lovegood",
+  talent: "Wit",
+  class: "Ravenclaw",
+  imageUrl: "https://cdn.pixabay.com/photo/2021/02/06/00/05/moon-5986386_1280.png"
 },
 {
   id: 6,
-  Name: "Ginny Weasley",
-  Talent: "Quidditch",
-  Class: "Ravenclaw",
-  imageUrl: ""
+  name: "Ginny Weasley",
+  talent: "Quidditch",
+  class: "Ravenclaw",
+  imageUrl: "https://64.media.tumblr.com/5b843de0b36c9385c3b06d9fde0b06f0/d38051ad49befa96-84/s1280x1920/60a2bffe0e7acc11d093d7dff7da16531fc9115e.jpg"
 },
 {
   id: 7,
-  Name: "Dean Thomas",
-  Talent: "Wizard",
-  Class: "Ravenclaw",
-  imageUrl: ""
+  name: "Dean Thomas",
+  talent: "Wizard",
+  class: "Ravenclaw",
+  imageUrl: "https://images.ctfassets.net/usf1vwtuqyxm/7crsyiIlJ6O24AUMGoWko/c2cded6b842959b7e5ed6e0c270de746/DeanThomas_WB_F5_DeanThomasLeaningOnChair_Promo_080615_Port.jpg?w=768&q=70&fm=webp"
 },
 {
   id: 8,
-  Name: "Newton Scamander",
-  Talent: "Magizoologist",
-  Class: "Slytherin",
-  imageUrl: ""
+  name: "Newton Scamander",
+  talent: "Magizoologist",
+  class: "Slytherin",
+  imageUrl: "https://cdna.artstation.com/p/marketplace/printed_product_covers/000/190/676/art_print_big/file.jpg?1688476346"
 },
 {
   id: 9,
-  Name: "Cedric Diggory",
-  Talent: "Wizard",
-  Class: "Hufflepuff",
-  imageUrl: ""
+  name: "Cedric Diggory",
+  talent: "Wizard",
+  class: "Hufflepuff",
+  imageUrl: "https://media.harrypotterfanzone.com/cedric-diggory-goblet-of-fire-portrait-600x0-c-default.jpg"
 },
 {
   id: 10,
-  Name: "Pansy Parkinson",
-  Talent: "Witchcraft",
-  Class: "Hufflepuff",
-  imageUrl: ""
+  name: "Pansy Parkinson",
+  talent: "Witchcraft",
+  class: "Hufflepuff",
+  imageUrl: "https://images.nightcafe.studio/jobs/ikKZrWKS76IbvYRMR6XJ/ikKZrWKS76IbvYRMR6XJ--1--oc2hi.jpg?tr=w-1080,c-at_max"
 },
 ];
 
+const houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"];
+
 //ForEach loop to sort through array
-students.forEach(student => console.log(student.Name));
+students.forEach(student => console.log(student.name));
+
 
 
 //render to dom utility function
@@ -83,6 +86,8 @@ const renderToDom = (divId, htmlToRender) => {
 };
 
 
+
+
 //get the cards on the DOM
 
 const cardsOnDom = (students) => {
@@ -91,9 +96,9 @@ const cardsOnDom = (students) => {
     domString += `<div class="card style="width: 18rem;">
   <img src=${student.imageUrl} class="card-img-top" alt="...">
   <div class="card-body">
-  <h5 class="card-title"${student.Name}></h5>
-  <p class ="card-text">${student.Talent}</p>
-  <p class = "card-text">${student.Class}</p>
+  <h5 class="card-title"${student.name}></h5>
+  <p class ="card-text">${student.talent}</p>
+  <p class = "card-text">${student.class}</p>
     <a href="#" class="btn btn-primary" id="expel-btn" ${student.id}>Expel</a>
   </div>
 </div>`;
@@ -118,13 +123,13 @@ renderToDom("#houseButtons", domString)
 
 //submit form
  
-const submitForm = () => {
-let domString = 
+const formOnDom = () => {
+const domString = 
 
 `<div class="mb-3" id="submitForm">
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Enter First Year's Name</label>
-    <input type="text" class="form-control" id="exampleInputPassword1">
+    <label for="exampleInputPassword1" class="form-label">Enter First Year's name</label>
+    <input type="text" id="name">
   </div>
   <button type="submit" class="btn btn-primary">Sort</button>`
   renderToDom("#submitForm", domString)
@@ -132,30 +137,36 @@ let domString =
   
 
   //Event Listener for Get Started Button
-const getStartedButton = document.querySelector("#getStarted");
+const sortButton = document.querySelector("#sortButton");
 
-getStartedButton.addEventListener("click", () => {
-  submitForm();
-  filterButtons();
-}); 
-
-const form = document.querySelector("form");
-
-//function that grabs values from the form
-
-  
-  // const createNewObject = {
-  //   id: students.length + 1,
-  //   Name: document.querySelector("#name").value,
-  //   Talent: document.querySelector("#talent").value,
-  //   Class: document.querySelector("#class").value,
-  //   Image: document.querySelector("#image").value
-  // }
-  //   students.push(createNewObject);
-  //   cardsOnDom(students);
-  //   form.reset();
+sortButton.addEventListener("click", formOnDom);
 
 
+
+//form input
+
+const createNewStudent = () => {
+  //create randomizer 
+  const sortType = {
+    id: students.length + 1,
+    name: document.querySelector("#name").value,
+    House: houses[Math.floor(Math.random() * 5)],
+  };
+
+  students.push(sortType);
+  cardsOnDom(students);
+}
+
+const events = () => {
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    createNewStudent(e);
+    filterButtons()
+    form.reset();
+  });
+}
 
 
 
@@ -164,25 +175,25 @@ const houseButtons = document.querySelector("#houseButtons");
 // event listeners with filters
 houseButtons.addEventListener("click", (e) => {
   if (e.target.id.includes("ravenclaw-btn")) {
-    const filterRavenclaw = students.filter((student) => student.Class === "Ravenclaw");
+    const filterRavenclaw = students.filter((student) => student.class === "Ravenclaw");
     cardsOnDom(filterRavenclaw);
   };
 });
 houseButtons.addEventListener("click", (e) => {
   if (e.target.id.includes("hufflepuff-btn")) {
-    const filterHufflepuff = students.filter((student) => student.Class === "Hufflepuff");
+    const filterHufflepuff = students.filter((student) => student.class === "Hufflepuff");
     cardsOnDom(filterHufflepuff);
   };
 });
 houseButtons.addEventListener("click", (e) => {
   if (e.target.id.includes("slytherin-btn")) {
-    const filterSlytherin = students.filter((student) => student.Class === "Slytherin");
+    const filterSlytherin = students.filter((student) => student.class === "Slytherin");
     cardsOnDom(filterSlytherin);
   };
 });
 houseButtons.addEventListener("click", (e) => {
   if (e.target.id.includes("gryffindor-btn")) {
-    const filterGryffindor = students.filter((student) => student.Class === "Gryffindor");
+    const filterGryffindor = students.filter((student) => student.class === "Gryffindor");
     cardsOnDom(filterGryffindor);
   };
 });
@@ -216,3 +227,10 @@ studentCards.addEventListener("click", (e) => {
     voldyCard()
   };
 });
+
+
+const startApp = () => {
+  events();
+}
+
+startApp();
