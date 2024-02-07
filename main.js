@@ -94,14 +94,15 @@ const cardsOnDom = (students) => {
   let domString = "";
   students.forEach((student) => {
     domString += `<div class="card style="width: 18rem;">
-  <img src=${student.imageUrl} class="card-img-top" alt="...">
-  <div class="card-body">
-  <h5 class="card-title"${student.name}></h5>
-  <p class ="card-text">${student.talent}</p>
-  <p class = "card-text">${student.class}</p>
-    <a href="#" class="btn btn-primary" id="expel-btn" ${student.id}>Expel</a>
-  </div>
-</div>`;
+    <class="card-img-top" alt="...">
+   <div class="card-body">
+   <img src=${student.imageUrl} class="card-img-top">
+   <h5 class="card-title">${student.name}</h5>
+   <p class ="card-text">${student.talent}</p>
+   <p class = "card-text">${student.class}</p>
+     <a href="#" class="btn btn-primary" id="expel-btn--${student.id}">Expel</a>
+   </div>
+ </div>`;
   })
   renderToDom("#studentCards", domString); 
   }

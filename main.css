@@ -1,5 +1,5 @@
 #app {
-  background-color: blueviolet;
+  background-color: gray;
 }
 
 #getStarted {
@@ -12,4 +12,10 @@
 
 #houseButtons {
   background-color: yellowgreen
+}
+
+#studentCards img {
+  width: 10rem;
+  height: 10rem;
+
 }
