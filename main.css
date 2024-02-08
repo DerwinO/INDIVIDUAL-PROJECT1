@@ -14,6 +14,10 @@
   background-color: yellowgreen
 }
 
+#studentCards {
+  width: fit-content;
+}
+
 #studentCards img {
   width: 10rem;
   height: 10rem;

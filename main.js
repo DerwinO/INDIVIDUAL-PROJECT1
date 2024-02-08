@@ -208,7 +208,7 @@ houseButtons.addEventListener("click", (e) => {
 const voldyCard = () => {
 let domString =
 `<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
+  <img src="https://cdn.pixabay.com/photo/2021/12/14/13/36/fantasy-6870524_960_720.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">Welcome to the Dark Side!!</p>
   </div>
