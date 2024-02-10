@@ -71,7 +71,13 @@ const students = [
 },
 ];
 
+const voldyStudents = [];
+
 const houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"];
+
+const talents = ["Witchcraft", "Wizard", "Occlumency", "Quidditch"];
+
+
 
 //ForEach loop to sort through array
 students.forEach(student => console.log(student.name));
@@ -130,7 +136,7 @@ const domString =
 `<div class="mb-3" id="submitForm">
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Enter First Year's name</label>
-    <input type="text" id="name">
+    <input type="text" id="name" aria-label="name" required>
   </div>
   <button type="submit" class="btn btn-primary">Sort</button>`
   renderToDom("#submitForm", domString)
@@ -144,25 +150,32 @@ sortButton.addEventListener("click", formOnDom);
 
 
 
-//form input
 
+
+
+//create new object
 const createNewStudent = () => {
   //create randomizer 
   const sortType = {
     id: students.length + 1,
     name: document.querySelector("#name").value,
-    House: houses[Math.floor(Math.random() * 5)],
+    talent: talents[Math.floor(Math.random() *5)],
+    class: houses[Math.floor(Math.random() * 5)]
   };
-
+  
   students.push(sortType);
   cardsOnDom(students);
 }
+
+
+
+//submit form events when submitted
 
 const events = () => {
   const form = document.querySelector("form");
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    e.preventDefault(); //ON EVERY FORM
     createNewStudent(e);
     filterButtons()
     form.reset();
@@ -204,30 +217,41 @@ houseButtons.addEventListener("click", (e) => {
   };
 });
 
-//Voldy Army Card
-const voldyCard = () => {
-let domString =
-`<div class="card" style="width: 18rem;">
-  <img src="https://cdn.pixabay.com/photo/2021/12/14/13/36/fantasy-6870524_960_720.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <p class="card-text">Welcome to the Dark Side!!</p>
-  </div>
-</div>`
-renderToDom("#voldysArmy", domString)
-}
 
-//expel button
+
 const studentCards = document.querySelector ("#studentCards");
 
-studentCards.addEventListener("click", (e) => {
-  if (e.target.id.includes("expel-btn")) {
-    const [ ,id] = e.target.id.split("--");
-    const index = students.findIndex(e => e.id === Number(id));
-    students.splice(index, 1);
-    cardsOnDom(students);
-    voldyCard()
+
+
+//Voldy Army Card and filter for expelled students
+const voldyCard = () => {
+  let domString = "";
+  voldyStudents.forEach((voldyStudents) => {
+    domString =+
+  `<div class="card" style="width: 18rem;">
+    <img src="https://cdn.pixabay.com/photo/2021/12/14/13/36/fantasy-6870524_960_720.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">${voldyStudents.name} ,Welcome to the Dark Side!!</p>
+    </div>
+  </div>`;
+  })
+  renderToDom("#voldysArmy", domString)
+  
   };
-});
+
+  //expel button event listener and actions
+
+
+  studentCards.addEventListener("click", (e) => {
+    if (e.target.id.includes("expel-btn")) {
+      const [ ,id] = e.target.id.split("--");
+      const index = students.findIndex(e => e.id === Number(id));
+      //students.splice(index, 1);
+      voldyStudents.push(students.splice(index,1))
+      cardsOnDom(students);
+      voldyCard(voldyStudents)
+    };
+  });
 
 
 const startApp = () => {
