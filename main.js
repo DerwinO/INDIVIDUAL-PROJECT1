@@ -80,7 +80,7 @@ const talents = ["Witchcraft", "Wizard", "Occlumency", "Quidditch"];
 
 
 //ForEach loop to sort through array
-students.forEach(student => console.log(student.name));
+//students.forEach(student => console.log(student.name));
 
 
 
@@ -94,7 +94,7 @@ const renderToDom = (divId, htmlToRender) => {
 
 
 
-//get the cards on the DOM
+//get the student cards on the DOM
 
 const cardsOnDom = (students) => {
   let domString = "";
@@ -168,22 +168,6 @@ const createNewStudent = () => {
 }
 
 
-
-//submit form events when submitted
-
-const events = () => {
-  const form = document.querySelector("form");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault(); //ON EVERY FORM
-    createNewStudent(e);
-    filterButtons()
-    form.reset();
-  });
-}
-
-
-
 //target House buttons on the DOM
 const houseButtons = document.querySelector("#houseButtons");
 // event listeners with filters
@@ -226,12 +210,14 @@ const studentCards = document.querySelector ("#studentCards");
 //Voldy Army Card and filter for expelled students
 const voldyCard = () => {
   let domString = "";
-  voldyStudents.forEach((voldyStudents) => {
-    domString =+
+  //console.log(voldyStudents)
+  voldyStudents.map((student) => {
+    console.log("student", student[0])
+    domString +=
   `<div class="card" style="width: 18rem;">
     <img src="https://cdn.pixabay.com/photo/2021/12/14/13/36/fantasy-6870524_960_720.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-      <p class="card-text">${voldyStudents.name} ,Welcome to the Dark Side!!</p>
+      <h1 class="card-text">${student.name}  Welcome to the Dark Side!!</h1>
     </div>
   </div>`;
   })
@@ -241,17 +227,31 @@ const voldyCard = () => {
 
   //expel button event listener and actions
 
-
   studentCards.addEventListener("click", (e) => {
     if (e.target.id.includes("expel-btn")) {
       const [ ,id] = e.target.id.split("--");
       const index = students.findIndex(e => e.id === Number(id));
-      //students.splice(index, 1);
-      voldyStudents.push(students.splice(index,1))
       cardsOnDom(students);
+      const voldysArmy = students.splice(1, 1, index)
+      console.log(voldysArmy)
+      voldyStudents.push(voldysArmy)
       voldyCard(voldyStudents)
     };
   });
+
+
+//events for startApp function at the end
+
+const events = () => {
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault(); //ON EVERY FORM
+    createNewStudent(e);
+    filterButtons()
+    form.reset();
+  });
+}
 
 
 const startApp = () => {
